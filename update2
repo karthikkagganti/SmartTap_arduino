@@ -1,0 +1,42 @@
+
+int first_input=13;//nodemcu pin D0 is connected to pin13
+
+int sec_input=12;//nodemcu pin D1 is connected to pin12
+
+int relay1=5;//this is connected to input1 of the relay
+
+int relay2=6;//this is conneected to input2 of the relay 
+
+
+void setup() {
+  pinMode(relay1,OUTPUT);
+  digitalWrite(relay1,LOW);
+
+  pinMode(first_input,INPUT);
+  digitalWrite(first_input,HIGH);//whenever HIGH the solenoid valve stops the flow of water
+
+  pinMode(relay2,OUTPUT);
+  digitalWrite(relay2,LOW);
+
+  pinMode(sec_input,INPUT);
+  digitalWrite(sec_input,HIGH);
+
+}
+
+void loop() {
+  if(digitalRead(first_input)==LOW)
+  {
+    digitalWrite(relay1,HIGH);//turns ON the relay 1whenever the D0 of the nodemcu is LOW
+    
+  }
+  else if(digitalRead(sec_input)==LOW)//when LOW the  solenoid valve allows the flow of water
+  {
+    digitalWrite(relay2,HIGH);//turns ON the relay 2 whenever the D1 input of nodemcu is LOW 
+  }
+  else
+  {
+    delay(100);
+    return;
+  }
+
+}
